@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("appointments")
@@ -65,6 +67,25 @@ public class AppointmentController {
     @GetMapping("/list")
     public List<AppointmentJoint> showAllAppointmentsWithNames(){
         return appointmentService.showAllAppointmentsWithNames();
+    }
+
+    @GetMapping("/patient/{name}")
+    public List<AppointmentJoint> showAllAppointmentsByPatientName(@PathVariable("name") String name){
+        List<AppointmentJoint> allAppointments = appointmentService.showAllAppointmentsWithNames();
+        List<AppointmentJoint> patientAppointments = allAppointments.stream()
+                .filter(appointment -> appointment.getPatientName().toLowerCase().equals(name.toLowerCase()))
+                .collect(Collectors.toList());
+        return patientAppointments;
+    }
+
+
+    @GetMapping("/doctor/{name}")
+    public List<AppointmentJoint> showAllAppointmentsByDoctorName(@PathVariable("name") String name){
+        List<AppointmentJoint> allAppointments = appointmentService.showAllAppointmentsWithNames();
+        List<AppointmentJoint> doctorAppointments = allAppointments.stream()
+                .filter(appointment -> appointment.getDoctorName().toLowerCase().equals("dr " + name.toLowerCase()))
+                .collect(Collectors.toList());
+        return doctorAppointments;
     }
 
 }
