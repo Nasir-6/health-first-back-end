@@ -1,6 +1,10 @@
+## Note
+This is the back-end for our front-end project which was kindly provided by
+Aoife, Suraya, Michael, Jake, Hajr. What follows is their README.
+
 BNTA Server Side Project 
 
-<h1>Our Project: HealthFirst</h1>
+<h1>Project: HealthFirst</h1>
 
 Authors - Aoife, Suraya, Michael, Jake, Hajr 
 
