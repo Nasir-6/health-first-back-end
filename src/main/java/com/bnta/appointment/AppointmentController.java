@@ -1,7 +1,9 @@
 package com.bnta.appointment;
 
+import com.bnta.doctor.DoctorService;
 import com.bnta.patient.Patient;
 import com.bnta.patient.PatientService;
+import com.sun.tools.jconsole.JConsoleContext;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -15,10 +17,12 @@ public class AppointmentController {
 
     private PatientService patientService;
     private AppointmentService appointmentService;
+    private DoctorService doctorService;
 
-    public AppointmentController(PatientService patientService, AppointmentService appointmentService) {
+    public AppointmentController(PatientService patientService, AppointmentService appointmentService, DoctorService doctorService) {
         this.patientService = patientService;
         this.appointmentService = appointmentService;
+        this.doctorService = doctorService;
     }
 
     // Add appointment
@@ -69,6 +73,20 @@ public class AppointmentController {
         return appointmentService.showAllAppointmentsWithNames();
     }
 
+
+    @GetMapping("/patientId/{id}")
+    public List<AppointmentJoint> showAllAppointmentsByPatientId(@PathVariable("id") Integer id){
+        String name = patientService.findPatientById(id).getPatientName();
+        List<AppointmentJoint> allAppointments = appointmentService.showAllAppointmentsWithNames();
+        List<AppointmentJoint> patientAppointments = allAppointments.stream()
+                .filter(appointment -> appointment.getPatientName().toLowerCase().equals(name.toLowerCase()))
+                .collect(Collectors.toList());
+        return patientAppointments;
+    }
+
+
+
+
     @GetMapping("/patient/{name}")
     public List<AppointmentJoint> showAllAppointmentsByPatientName(@PathVariable("name") String name){
         List<AppointmentJoint> allAppointments = appointmentService.showAllAppointmentsWithNames();
@@ -84,6 +102,18 @@ public class AppointmentController {
         List<AppointmentJoint> allAppointments = appointmentService.showAllAppointmentsWithNames();
         List<AppointmentJoint> doctorAppointments = allAppointments.stream()
                 .filter(appointment -> appointment.getDoctorName().toLowerCase().equals("dr " + name.toLowerCase()))
+                .collect(Collectors.toList());
+        return doctorAppointments;
+    }
+
+    @GetMapping("/doctorId/{id}")
+    public List<AppointmentJoint> showAllAppointmentsByDoctorId(@PathVariable("id") Integer id){
+        String name = doctorService.selectDoctorById(id).getDoctorName();
+        System.out.println(name);
+        System.out.println("LOOOK AT MEEE");
+        List<AppointmentJoint> allAppointments = appointmentService.showAllAppointmentsWithNames();
+        List<AppointmentJoint> doctorAppointments = allAppointments.stream()
+                .filter(appointment -> appointment.getDoctorName().equals(name))
                 .collect(Collectors.toList());
         return doctorAppointments;
     }
