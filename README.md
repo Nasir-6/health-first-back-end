@@ -1,6 +1,6 @@
 ## Note
 This is the back-end for our front-end project which was kindly provided by
-Aoife, Suraya, Michael, Jake, Hajr. What follows is their README.
+Aoife, Suraya, Michael, Jake, Hajr. What follows is their README not ours.
 
 BNTA Server Side Project 
 
