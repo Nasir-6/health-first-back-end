@@ -12,6 +12,7 @@ public class AppointmentRowMapperList implements RowMapper<AppointmentJoint> {
     @Override
     public AppointmentJoint mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new AppointmentJoint(
+                rs.getInt("appointment_id"),
                 rs.getString("patient_name"),
                 rs.getString("doctor_name"),
                 rs.getString("room_name"),

@@ -5,18 +5,28 @@ import java.time.LocalTime;
 import java.util.Objects;
 
 public class AppointmentJoint {
+    private Integer appointmentId;
     private String patientName;
     private String doctorName;
     private String roomName;
     private LocalDate appointmentDate;
     private LocalTime appointmentTime;
 
-    public AppointmentJoint(String patientName, String doctorName, String roomName, LocalDate appointmentDate, LocalTime appointmentTime) {
+    public AppointmentJoint(Integer appointmentId, String patientName, String doctorName, String roomName, LocalDate appointmentDate, LocalTime appointmentTime) {
+        this.appointmentId = appointmentId;
         this.patientName = patientName;
         this.doctorName = doctorName;
         this.roomName = roomName;
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
+    }
+
+    public Integer getAppointmentId() {
+        return appointmentId;
+    }
+
+    public void setAppointmentId(Integer appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     public String getPatientName() {
@@ -64,18 +74,19 @@ public class AppointmentJoint {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AppointmentJoint that = (AppointmentJoint) o;
-        return Objects.equals(patientName, that.patientName) && Objects.equals(doctorName, that.doctorName) && Objects.equals(roomName, that.roomName) && Objects.equals(appointmentDate, that.appointmentDate) && Objects.equals(appointmentTime, that.appointmentTime);
+        return Objects.equals(appointmentId, that.appointmentId) && Objects.equals(patientName, that.patientName) && Objects.equals(doctorName, that.doctorName) && Objects.equals(roomName, that.roomName) && Objects.equals(appointmentDate, that.appointmentDate) && Objects.equals(appointmentTime, that.appointmentTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(patientName, doctorName, roomName, appointmentDate, appointmentTime);
+        return Objects.hash(appointmentId, patientName, doctorName, roomName, appointmentDate, appointmentTime);
     }
 
     @Override
     public String toString() {
         return "AppointmentJoint{" +
-                "patientName='" + patientName + '\'' +
+                "appointmentId=" + appointmentId +
+                ", patientName='" + patientName + '\'' +
                 ", doctorName='" + doctorName + '\'' +
                 ", roomName='" + roomName + '\'' +
                 ", appointmentDate=" + appointmentDate +

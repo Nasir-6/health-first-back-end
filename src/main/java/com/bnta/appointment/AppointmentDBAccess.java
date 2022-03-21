@@ -120,7 +120,8 @@ public class AppointmentDBAccess implements AppointmentDAO{
     @Override
     public List<AppointmentJoint> showAllAppointmentsWithNames(){
         String sql = """
-                SELECT patients.patient_name,
+                SELECT appointment_id,
+                patients.patient_name,
                     doctors.doctor_name,
                     doctors.room_name,
                     appointments.appointment_date,
