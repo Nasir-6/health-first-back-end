@@ -4,6 +4,7 @@ import com.bnta.patient.PatientController;
 import com.bnta.patient.BloodType;
 import com.bnta.patient.Patient;
 import com.bnta.patient.PatientService;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -19,6 +20,7 @@ public class AddPatientControllerTest {
     private PatientController underTest;
 
     @Test
+    @Disabled
     void successfulAddPatient(){
         // Given
         Patient examplePatient =

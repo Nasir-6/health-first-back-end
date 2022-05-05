@@ -65,7 +65,7 @@ public class SelectById_ServiceTest {
         //when
         assertThatThrownBy(() -> underTest.selectAppointmentById(id))
                 .isInstanceOf(AppointmentNotFoundException.class)
-                .hasMessageContaining("Appointment not found");
+                .hasMessageContaining("Invalid appointment ID");
         //then
 
         //this is verifying that appointmentDAO is not accessed as id is null

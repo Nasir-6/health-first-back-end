@@ -1,4 +1,4 @@
-package appointmentDAOTests;
+package appointmentDAOTest;
 
 import com.bnta.appointment.Appointment;
 import com.bnta.appointment.AppointmentDAO;
@@ -80,7 +80,7 @@ public class DeleteAppointmentServiceTest {
             verify(appointmentDAO).deleteAppointmentById(appointmentArgumentCaptor.capture());
             Integer expectedAppointment = appointmentArgumentCaptor.getValue();
 
-        }).hasMessage("Sorry " + id + " could not be found");
+        }).hasMessage("Appointment with ID " + id + " not found");
     }
 
     @Test
@@ -101,7 +101,7 @@ public class DeleteAppointmentServiceTest {
             verify(appointmentDAO).deleteAppointmentById(appointmentArgumentCaptor.capture());
             Integer expectedAppointment = appointmentArgumentCaptor.getValue();
 
-        }).hasMessage("Sorry " + id + " could not be found");
+        }).hasMessage("Appointment with ID " + id + " not found");
     }
 
 

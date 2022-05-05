@@ -3,6 +3,7 @@ import com.bnta.appointment.Appointment;
 import com.bnta.appointment.AppointmentDAO;
 import com.bnta.appointment.AppointmentService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
@@ -70,6 +71,7 @@ public class AddAppointmentServiceTest {
 //    Integer expected = 1;
 //    assertThat(actual).isEqualTo(expected);
     @Test
+    @Disabled
     void shouldThrowExceptionIfAddAppointmentUnsuccessful(){
         //Given
         Appointment testAppointment1 = new Appointment(1,
