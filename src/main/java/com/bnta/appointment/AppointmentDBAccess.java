@@ -31,11 +31,7 @@ public class AppointmentDBAccess implements AppointmentDAO{
 
     @Override
     public int bookAppointment(Appointment appointment) {
-        String insertSql =
-                """
-                INSERT INTO appointments(patient_id, doctor_id, appointment_date, appointment_time)
-                VALUES(?,?,?,?)
-                """;
+        String insertSql ="INSERT INTO appointments(patient_id, doctor_id, appointment_date, appointment_time) VALUES(?,?,?,?) ";
 
         int result = jdbcTemplate.update(
                 insertSql,
@@ -49,10 +45,7 @@ public class AppointmentDBAccess implements AppointmentDAO{
 
     @Override
     public int deleteAppointmentById(Integer id) {
-        String sql = """ 
-                DELETE FROM appointments 
-                WHERE appointment_id = ?
-                """;
+        String sql = "DELETE FROM appointments WHERE appointment_id = ?";
         int result = jdbcTemplate.update(
                 sql,
                 id
@@ -63,18 +56,14 @@ public class AppointmentDBAccess implements AppointmentDAO{
 
     @Override
     public List<Appointment> viewAllAppointments() {
-        String sql = """
-                SELECT appointment_id, patient_id, doctor_id, appointment_date, appointment_time FROM appointments
-                """;
+        String sql = "SELECT appointment_id, patient_id, doctor_id, appointment_date, appointment_time FROM appointments";
         return jdbcTemplate.query(sql, new AppointmentRowMapper());
     }
 
 
     @Override
     public Appointment selectAppointmentById(Integer id) {
-        String sql = """
-                SELECT appointment_id, patient_id, doctor_id, appointment_date, appointment_time FROM appointments WHERE appointment_id = ?
-                """;
+        String sql = "SELECT appointment_id, patient_id, doctor_id, appointment_date, appointment_time FROM appointments WHERE appointment_id = ?";
         List<Appointment> appointments = jdbcTemplate.query(sql, new AppointmentRowMapper(), id);
         return appointments.stream().findFirst().orElse(null);
 
@@ -83,10 +72,7 @@ public class AppointmentDBAccess implements AppointmentDAO{
 
     @Override
     public int updateAppointment(Integer id, Appointment update) {
-        return jdbcTemplate.update(
-                """
-                        UPDATE appointments SET (patient_id, doctor_id, appointment_date, appointment_time) = (?, ?, ?, ?) WHERE appointment_id = ?
-                        """,
+        return jdbcTemplate.update("UPDATE appointments SET (patient_id, doctor_id, appointment_date, appointment_time) = (?, ?, ?, ?) WHERE appointment_id = ?",
                 update.getPatientNhsId(),
                 update.getDoctorId(),
                 update.getAppointmentDate(),
@@ -98,15 +84,7 @@ public class AppointmentDBAccess implements AppointmentDAO{
 
     @Override
     public List<Appointment> selectAppointmentByPatientBloodType(String bloodType) {
-        String sql = """
-        SELECT
-            appointments.*
-        FROM
-            patients
-        INNER JOIN appointments
-            ON patients.id = appointments.patient_id
-        WHERE patients.blood_type = ?
-        """;
+        String sql = "SELECT appointments.* FROM patients INNER JOIN appointments ON patients.id = appointments.patient_id WHERE patients.blood_type = ?";
         List<Appointment> appointmentswithbloodtype = jdbcTemplate.query(sql, new AppointmentRowMapper(), bloodType);
         if (appointmentswithbloodtype.isEmpty()) {
             return null;
@@ -119,19 +97,7 @@ public class AppointmentDBAccess implements AppointmentDAO{
 
     @Override
     public List<AppointmentJoint> showAllAppointmentsWithNames(){
-        String sql = """
-                SELECT appointment_id,
-                patients.patient_name,
-                    doctors.doctor_name,
-                    doctors.room_name,
-                    appointments.appointment_date,
-                    appointment_time
-                FROM appointments
-                        INNER JOIN patients
-                            ON appointments.patient_id = patients.id
-                        INNER JOIN doctors
-                            ON appointments.doctor_id = doctors.id;
-                """;
+        String sql = "SELECT appointment_id, patients.patient_name, doctors.doctor_name, doctors.room_name, appointments.appointment_date, appointment_time FROM appointments INNER JOIN patients ON appointments.patient_id = patients.id INNER JOIN doctors ON appointments.doctor_id = doctors.id;";
         List<AppointmentJoint> appointmentsOutput = jdbcTemplate.query(
                 sql,
                 new AppointmentRowMapperList());

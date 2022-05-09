@@ -17,19 +17,14 @@ public class DoctorDAS implements DoctorDAO {
 
     @Override
     public List<Doctor> getAllDoctors() {
-    String sql = """
-                SELECT id, doctor_name, room_name FROM doctors
-                """;
+    String sql = "SELECT id, doctor_name, room_name FROM doctors";
         return jdbcTemplate.query(sql, new DoctorRowMapper());
     }
 
     @Override
     public int addDoctor(Doctor doctor) throws NullPointerException {
         try {
-            String insertSql = """
-                INSERT INTO doctors(doctor_name, room_name)
-                VALUES(?, ?)
-                """;
+            String insertSql = "INSERT INTO doctors(doctor_name, room_name) VALUES(?, ?)";
             int result = jdbcTemplate.update(
                     insertSql,
                     doctor.getDoctorName(),
@@ -47,12 +42,7 @@ public class DoctorDAS implements DoctorDAO {
     @Override
     public int updateDoctorById(Integer id, Doctor update) {
         return jdbcTemplate.update(
-                """
-                        UPDATE doctors
-                        SET (doctor_name, room_name) = (?, ?)
-                        WHERE id = ?
-                        """,
-
+                "UPDATE doctors SET (doctor_name, room_name) = (?, ?) WHERE id = ?",
                 update.getDoctorName(),
                 update.getRoomName(),
                 id
@@ -61,9 +51,7 @@ public class DoctorDAS implements DoctorDAO {
 
     @Override
     public Doctor selectDoctorById(Integer id) {
-        String sql = """
-                SELECT id, doctor_name, room_name FROM doctors WHERE id = ?
-                """;
+        String sql = "SELECT id, doctor_name, room_name FROM doctors WHERE id = ? ";
         List<Doctor> doctors = jdbcTemplate.query(sql, new DoctorRowMapper(), id);
         return doctors.stream().findFirst().orElse(null);
     }
@@ -71,10 +59,7 @@ public class DoctorDAS implements DoctorDAO {
     @Override
     public int deleteDoctorById(Integer id) {
         String sql =
-                        """
-                        DELETE FROM doctors
-                         WHERE id = ?
-                        """;
+                        "DELETE FROM doctors WHERE id = ?";
 
                 int result = jdbcTemplate.update(
                         sql,
@@ -87,10 +72,7 @@ public class DoctorDAS implements DoctorDAO {
 
     @Override
     public int addPresetDoctors() {
-        String insertSql = """
-                INSERT INTO doctors (doctor_name, room_name)
-                VALUES('Dr Franks','Room 3'),('Dr Maryland','Room 2'),('Dr Darwin','Room 1')
-                """;
+        String insertSql = "INSERT INTO doctors (doctor_name, room_name) VALUES('Dr Franks','Room 3'),('Dr Maryland','Room 2'),('Dr Darwin','Room 1')";
         int result = jdbcTemplate.update(
                 insertSql);
 
@@ -101,10 +83,7 @@ public class DoctorDAS implements DoctorDAO {
 
     @Override
     public int deleteAllDoctors() {
-        return jdbcTemplate.update(
-                """
-                        DELETE FROM doctors
-                        """);
+        return jdbcTemplate.update("DELETE FROM doctors");
 
 
     }

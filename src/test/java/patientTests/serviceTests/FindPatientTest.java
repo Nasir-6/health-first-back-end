@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.eq;
@@ -43,11 +44,7 @@ public class FindPatientTest {
                         BloodType.B);
 
 
-        Mockito.when(patientDAO.selectAllPatients()).thenReturn(List.of(new Patient(2,
-                "John",
-                "07910975166",
-                "johndc@gmail.com",
-                BloodType.B)));
+        Mockito.when(patientDAO.selectAllPatients()).thenReturn(Arrays.asList(examplePatient));
 
         //When
         List<Patient> output = underTest.findAllPatients();

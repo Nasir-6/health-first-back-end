@@ -16,10 +16,7 @@ public class PatientDBAccess implements PatientDAO {
     @Override
     public int insertPatient(Patient patient) throws NullPointerException {
         try {
-        String insertSql = """
-                INSERT INTO patients(patient_name, email_address, phone_number, blood_type)
-                VALUES(?, ?, ?, ?)
-                """;
+        String insertSql = "INSERT INTO patients(patient_name, email_address, phone_number, blood_type) VALUES(?, ?, ?, ?)";
         int result = jdbcTemplate.update(
                 insertSql,
                 patient.getPatientName(),
@@ -38,29 +35,21 @@ public class PatientDBAccess implements PatientDAO {
 
     @Override
     public Patient selectPatientById(Integer id){
-        String sql = """
-                SELECT id, patient_name, email_address, phone_number, blood_type FROM patients WHERE id = ?
-                """;
+        String sql = "SELECT id, patient_name, email_address, phone_number, blood_type FROM patients WHERE id = ?";
         List<Patient> patients = jdbcTemplate.query(sql, new PatientRowMapper(), id);
         return patients.stream().findFirst().orElse(null);
     }
 
     @Override
     public List<Patient> selectAllPatients() {
-        String sql = """
-                SELECT id, patient_name, email_address, phone_number, blood_type FROM patients
-                """;
+        String sql = "SELECT id, patient_name, email_address, phone_number, blood_type FROM patients";
         return jdbcTemplate.query(sql, new PatientRowMapper());
     }
 
     @Override
     public int updatePatient(Integer id, Patient update) {
         return jdbcTemplate.update(
-                """
-                        UPDATE patients
-                        SET (patient_name, email_address, phone_number, blood_type) = (?, ?, ?, ?)
-                        WHERE id = ?
-                        """,
+                "UPDATE patients SET (patient_name, email_address, phone_number, blood_type) = (?, ?, ?, ?) WHERE id = ?",
                 update.getPatientName(),
                 update.getPatientEmailAddress(),
                 update.getPatientPhoneNumber(),
@@ -73,19 +62,14 @@ public class PatientDBAccess implements PatientDAO {
     @Override
     public int deletePatient(Patient patient) {
         return jdbcTemplate.update(
-                """
-                        DELETE FROM patients WHERE id = ?
-                        """,
+                "DELETE FROM patients WHERE id = ?",
                 patient.getPatientNhsId()
         );
     }
 
     @Override
     public int deleteAllPatients() {
-        return jdbcTemplate.update(
-                """
-                        DELETE FROM patients
-                        """);
+        return jdbcTemplate.update("DELETE FROM patients");
     }
 
 }

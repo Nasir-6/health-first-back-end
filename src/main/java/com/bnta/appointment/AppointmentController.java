@@ -3,7 +3,7 @@ package com.bnta.appointment;
 import com.bnta.doctor.DoctorService;
 import com.bnta.patient.Patient;
 import com.bnta.patient.PatientService;
-import com.sun.tools.jconsole.JConsoleContext;
+//import com.sun.tools.jconsole.JConsoleContext;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;

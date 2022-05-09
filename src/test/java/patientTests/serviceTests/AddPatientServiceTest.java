@@ -7,7 +7,7 @@ import com.bnta.exception.IllegalStateException;
 import com.bnta.patient.BloodType;
 import com.bnta.patient.Patient;
 import com.bnta.patient.PatientService;
-import jdk.jfr.SettingDefinition;
+//import jdk.jfr.SettingDefinition;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -48,7 +49,7 @@ public class AddPatientServiceTest {
 
         boolean expected = true;
         Mockito.when(patientDAO.selectPatientById(eq(examplePatient.getPatientNhsId()))).thenReturn(examplePatient);
-        Mockito.when(patientDAO.selectAllPatients()).thenReturn(List.of(examplePatient));
+        Mockito.when(patientDAO.selectAllPatients()).thenReturn(Arrays.asList(examplePatient));
 
         //When
         boolean result = underTest.doesPatientWithIdExist(examplePatient.getPatientNhsId());
@@ -273,9 +274,7 @@ public class AddPatientServiceTest {
                         "johndc@gmail.com",
                         null);
 
-        Mockito.when(patientDAO.selectAllPatients()).thenReturn(List.of(
-                examplePatient
-        ));
+        Mockito.when(patientDAO.selectAllPatients()).thenReturn(Arrays.asList(examplePatient));
 
         Mockito.when(patientDAO.selectPatientById(examplePatient.getPatientNhsId())).thenReturn(examplePatient);
 

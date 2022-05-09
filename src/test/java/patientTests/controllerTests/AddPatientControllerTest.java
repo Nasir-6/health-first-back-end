@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.eq;
@@ -30,11 +31,7 @@ public class AddPatientControllerTest {
                         "johndc@gmail.com",
                         BloodType.B);
         Mockito.when(patientService.addNewPatient(eq(examplePatient))).thenReturn(1);
-        Mockito.when(patientService.findAllPatients()).thenReturn(List.of(new Patient(2,
-                "John",
-                "07910975166",
-                "johndc@gmail.com",
-                BloodType.B)));
+        Mockito.when(patientService.findAllPatients()).thenReturn(Arrays.asList(examplePatient));
 
         // When
 
