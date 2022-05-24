@@ -1,9 +1,0 @@
-patientTests/controllerTests/AddPatientControllerTest.class
-patientTests/serviceTests/AddPatientServiceTest.class
-appointmentDAOTest/AddAppointmentServiceTest.class
-appointmentDAOTest/UpdatesAppointmentServiceTest.class
-appointmentDAOTest/ViewAllAppointmentsServiceTest.class
-DoctorDAOTest/AddDoctorTest.class
-patientTests/serviceTests/FindPatientTest.class
-appointmentDAOTest/SelectById_ServiceTest.class
-appointmentDAOTest/DeleteAppointmentServiceTest.class
