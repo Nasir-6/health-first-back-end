@@ -10,7 +10,7 @@ CREATE TABLE patients (
 INSERT INTO patients (patient_name, phone_number, email_address, blood_type)
  VALUES ('Suraya', '123456', 'Suraya@gmail.com', 'A');
 INSERT INTO patients (patient_name, phone_number, email_address, blood_type)
- VALUES ('Hajer', '123456', 'Hajer@gmail.com', 'B');
+ VALUES ('Hajr', '123456', 'Hajr@gmail.com', 'B');
 INSERT INTO patients (patient_name, phone_number, email_address, blood_type)
  VALUES ('Michael', '123456', 'Michael@gmail.com', 'O');
 INSERT INTO patients (patient_name, phone_number, email_address, blood_type)
