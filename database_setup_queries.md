@@ -1,3 +1,15 @@
+# HealthFirst Creation of database commands
+
+- Terminal setup
+
+```sql
+-- type psql in terminal to launch postgresql
+CREATE DATABASE healthfirst;
+```
+
+- Postico setup
+```sql
+
 CREATE TABLE patients (
     id SERIAL PRIMARY KEY,
     patient_name character varying(255),
@@ -57,4 +69,4 @@ CREATE TABLE appointments (
   INSERT INTO appointments(patient_id, doctor_id, appointment_date, appointment_time)
   VALUES (4, 2,'2019-10-09', '11:23:00');
   
-
+```
